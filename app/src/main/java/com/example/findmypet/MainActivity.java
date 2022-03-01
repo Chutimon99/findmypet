@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //รักนะอ้ั้ม 
+
         musername = findViewById(R.id.user);
         mpassword = findViewById(R.id.pass);
         Btnsign = findViewById(R.id.signinBt);
