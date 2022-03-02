@@ -27,12 +27,54 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //รักนะอ้ั้ม 
-
         musername = findViewById(R.id.user);
         mpassword = findViewById(R.id.pass);
         Btnsign = findViewById(R.id.signinBt);
         Btnregister = findViewById(R.id.regigterBt);
+
+        Btnsign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String usertxt = musername.getText().toString();
+                String passwordtxt = mpassword.getText().toString();
+
+                if(usertxt.isEmpty() || passwordtxt.isEmpty()){
+                    Toast.makeText(MainActivity.this,"กรุณาใส่ชื่อผู้ใช้และรหัสผ่าน",Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+                    databaseReference.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            if(snapshot.hasChild(usertxt)){
+
+                                String getpassword = snapshot.child(usertxt).child("password").getValue(String.class);
+                                if(getpassword.equals(passwordtxt)){
+                                    Toast.makeText(MainActivity.this,"Successfully",Toast.LENGTH_SHORT).show();
+
+                                    startActivity(new Intent(MainActivity.this,Mainpage.class));
+                                    finish();
+                                }
+                                else {
+                                    Toast.makeText(MainActivity.this,"รหัสผ่านไม่ถูกต้อง",Toast.LENGTH_SHORT).show();
+
+                                }
+                            }
+                            else {
+                                Toast.makeText(MainActivity.this,"รหัสผ่านไม่ถูกต้อง" , Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                }
+            }
+        });
 
         Btnregister.setOnClickListener(new View.OnClickListener() {
             @Override

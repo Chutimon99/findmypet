@@ -1,5 +1,6 @@
 package com.example.findmypet;
 
+import androidx.activity.OnBackPressedDispatcherOwner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,62 +24,81 @@ import java.util.HashMap;
 
 public class Register extends AppCompatActivity{
 
-    private  EditText musername,mpassword,mconfirmpassword,mnamepet,maddress,mname,mnumber;
+    private  EditText username,password,confirmpassword,namepet,address,name,number;
     private  Button Bregister;
 
-    private  FirebaseDatabase db = FirebaseDatabase.getInstance();
-    private  DatabaseReference root = db.getReference().child("Users ");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://find-mypet-default-rtdb.firebaseio.com/");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        musername = findViewById(R.id.username);
-        mpassword = findViewById(R.id.password);
-       mconfirmpassword = findViewById(R.id.confirmpassword);
-       mnamepet = findViewById(R.id.namepet);
-       maddress = findViewById(R.id.address);
-       mname = findViewById(R.id.name);
-       mnumber = findViewById(R.id.number);
-       Bregister = findViewById(R.id.register);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        confirmpassword = findViewById(R.id.confirmpassword);
+        namepet = findViewById(R.id.namepet);
+        address = findViewById(R.id.address);
+        name = findViewById(R.id.name);
+        number = findViewById(R.id.number);
+        Bregister = findViewById(R.id.register);
+
+        Bregister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String usertxt = username.getText().toString();
+                String passwordtxt = password.getText().toString();
+                String conpasswordtxt = confirmpassword.getText().toString();
+                String namepettxt = namepet.getText().toString();
+                String nametxt = name.getText().toString();
+                String addresstxt = address.getText().toString();
+                String numbertxt = number.getText().toString();
+
+                if(usertxt.isEmpty() || passwordtxt.isEmpty() || conpasswordtxt.isEmpty()
+                        || namepettxt.isEmpty() || nametxt.isEmpty() || addresstxt.isEmpty() || numbertxt.isEmpty()){
+
+                   Toast.makeText(Register.this,"กรุงณาใส่ข้อมูลให้ครบทุกช่อง",Toast.LENGTH_SHORT).show();
+                }
+                else if (!passwordtxt.equals(conpasswordtxt)){
+                    Toast.makeText(Register.this,"รหัสผ่านไม่ตรงกัน",Toast.LENGTH_SHORT).show();
+                }
+
+                else {
+
+                    databaseReference.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            if (snapshot.hasChild(usertxt)){
+                                Toast.makeText(Register.this,"ผู้ใช้นี้ได้ลงทะเบียนแล้ว",Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                databaseReference.child("Users").child(usertxt).child("username").setValue(usertxt);
+                                databaseReference.child("Users").child(usertxt).child("password").setValue(passwordtxt);
+                                databaseReference.child("Users").child(usertxt).child("namepet").setValue(namepettxt);
+                                databaseReference.child("Users").child(usertxt).child("name").setValue(nametxt);
+                                databaseReference.child("Users").child(usertxt).child("address").setValue(addresstxt);
+                                databaseReference.child("Users").child(usertxt).child("number").setValue(numbertxt);
+
+                                Toast.makeText(Register.this,"ลงทะเบียนผู้ใช้สำเร็จ",Toast.LENGTH_SHORT).show();
+                                finish();
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
 
 
-       Bregister.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
+            }
+        });
 
-               Intent Bregister = new Intent(Register.this,MainActivity.class);
-              startActivity(Bregister);
+    }
 
-               String username = musername.getText().toString();
-               String password = mpassword.getText().toString();
-               String confirmpassword = mconfirmpassword.getText().toString();
-               String namepet = mnamepet.getText().toString();
-               String address = maddress.getText().toString();
-               String name = mname.getText().toString();
-               String number = mnumber.getText().toString();
-
-               HashMap<String , String> userMap = new HashMap<>();
-
-              userMap.put("username",username);
-              userMap.put("password",password);
-              userMap.put("confirmpassword",confirmpassword);
-              userMap.put("namepet",namepet);
-              userMap.put("adderss",address);
-              userMap.put("name",name);
-              userMap.put("number",number);
-
-              root.push().setValue(userMap);
-
-
-
-                       }
-
-
-                   });
-
-           }
-
-           }
+}
 
