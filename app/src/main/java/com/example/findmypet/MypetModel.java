@@ -1,18 +1,19 @@
 package com.example.findmypet;
 
 public class MypetModel {
-    double latitude,longtitude  ;
+    double latitude,longtitude;
     String timestamp;
+
 
     public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp (String timestamp) {
         this.timestamp = timestamp;
     }
 
-    public MypetModel(double latitude, double longtitude , String timestamp){
+    public MypetModel(double latitude, double longtitude , String timestamp ) {
         this.latitude = latitude;
         this.longtitude = longtitude;
         this.timestamp = timestamp;
@@ -33,6 +34,5 @@ public class MypetModel {
     public void setLongtitude( double longtitude) {
         this.longtitude = longtitude;
     }
-
 
 }

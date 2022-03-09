@@ -1,12 +1,18 @@
 package com.example.findmypet;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -15,10 +21,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Mypet extends AppCompatActivity {
+public class Mypet extends AppCompatActivity implements  View.OnClickListener{
 
-    private EditText petname,type;
-    private Button ok;
+    private  static final int RESULT_LOAD_IMAGE = 1 ;
+
+    private ImageView imageUpload;
+    private Button BtnUpload;
+
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://find-mypet-default-rtdb.firebaseio.com/");
     @Override
@@ -26,31 +35,32 @@ public class Mypet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mypet);
 
-        petname = findViewById(R.id.namepet);
+        imageUpload = (ImageView) findViewById(R.id.UploadPet);
+        BtnUpload = (Button) findViewById(R.id.BtnUpload);
 
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String petnametxt = petname.getText().toString();
-                String typetxt = type.getText().toString();
+        imageUpload.setOnClickListener(this);
+        BtnUpload.setOnClickListener(this);
+    }
 
-                databaseReference.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.BtnUpload:
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(galleryIntent,RESULT_LOAD_IMAGE);
+                break;
 
-                        databaseReference.child("Users").child(petnametxt).child("namepet").setValue(petnametxt);
-                        databaseReference.child("Users").child(petnametxt).child("typepet").setValue(typetxt);
 
-                        Toast.makeText(Mypet.this,"แก้ไขสำเร็จ",Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
+        }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+    }
 
-                    }
-                });
-            }
-        });
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_LOAD_IMAGE && requestCode == RESULT_OK && data != null ){
+            Uri selectedImage = data.getData();
+            imageUpload.setImageURI(selectedImage);
+        }
     }
 }

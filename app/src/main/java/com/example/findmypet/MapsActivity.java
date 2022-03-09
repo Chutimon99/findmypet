@@ -84,6 +84,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //phoneNumbers.add((Long) singleUser.get("phone"));
 
             mypetModelList.add(new MypetModel(Double.parseDouble(singleUser.get("latitude").toString()),Double.parseDouble(singleUser.get("longtitude").toString()),singleUser.get("timestamp").toString()));
+
         }
 
         //mypetModelList.((element)->{
@@ -96,7 +97,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                String Time = sdf. format(timeD);
                 LatLng sydney = new LatLng(maxbytimestamp.getLatitude(), maxbytimestamp.getLongtitude());
                 mMap.addMarker(new MarkerOptions().position(sydney).title(Time));
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 18), 2000, null);
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 18),1000,null);
             }
         //}
 
