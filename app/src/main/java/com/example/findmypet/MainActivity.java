@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,14 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
     EditText musername, mpassword;
     Button Btnsign, Btnregister;
+
+    private static String gbUserID;
+    public static String getGbIdUser() {
+        return gbUserID;
+    }
+    public static void setGbIdUser(String gbIdUser) {
+        gbUserID = gbIdUser;
+    }
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://find-mypet-default-rtdb.firebaseio.com/");
 
@@ -53,7 +62,10 @@ public class MainActivity extends AppCompatActivity {
                                 if(getpassword.equals(passwordtxt)){
                                     Toast.makeText(MainActivity.this,"Successfully",Toast.LENGTH_SHORT).show();
 
-                                    startActivity(new Intent(MainActivity.this,Mainpage.class));
+                                    MainActivity.setGbIdUser(usertxt);
+
+                                    Intent intent = new Intent(MainActivity.this,Mainpage.class);
+                                    startActivity(intent);
                                     finish();
                                 }
                                 else {

@@ -38,6 +38,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private List<MypetModel> mypetModelList = new ArrayList<>() ;
+    private String battery = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +61,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 String value = dataSnapshot.getValue().toString();
                 System.out.println( "Value is: " + value);
                 collectMypetDataset((Map<String,Object>)dataSnapshot.getValue());
+
+//                String batterytxt = dataSnapshot.child("battery").getValue().toString();
+//                battery = batterytxt;
             }
 
             @Override
@@ -83,7 +87,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //Get phone field and append to list
             //phoneNumbers.add((Long) singleUser.get("phone"));
 
-            mypetModelList.add(new MypetModel(Double.parseDouble(singleUser.get("latitude").toString()),Double.parseDouble(singleUser.get("longtitude").toString()),singleUser.get("timestamp").toString()));
+            mypetModelList.add(new MypetModel(Double.parseDouble(singleUser.get("latitude").toString()),
+                    Double.parseDouble(singleUser.get("longtitude").toString()),(singleUser.get("timestamp").toString()),singleUser.get("battery").toString()));
 
         }
 
@@ -95,8 +100,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                Date timeD = new Date(Timestamp * 1000);
                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy เวลา:HH:mm");
                String Time = sdf. format(timeD);
+battery = maxbytimestamp.getBattery();
                 LatLng sydney = new LatLng(maxbytimestamp.getLatitude(), maxbytimestamp.getLongtitude());
-                mMap.addMarker(new MarkerOptions().position(sydney).title(Time));
+                mMap.addMarker(new MarkerOptions().position(sydney).title(Time ).snippet(" Bettery " + battery));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 18),1000,null);
             }
         //}

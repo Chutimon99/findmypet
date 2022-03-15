@@ -13,7 +13,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 public class Mainpage extends AppCompatActivity {
-    private Button scan1,find,Bmypet;
+    private Button scan1,find,Bmypet,edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,15 @@ public class Mainpage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent find = new Intent(Mainpage.this,MapsActivity.class);
                 startActivity(find);
+            }
+        });
+
+        edit = (Button)findViewById(R.id.editprofile);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent edit = new Intent(Mainpage.this,EditProfile.class);
+                startActivity(edit);
             }
         });
     }

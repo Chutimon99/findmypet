@@ -59,42 +59,12 @@
         android:textDirection="ltr"
         android:textSize="18sp" />
 
-     <EditText
-         android:id="@+id/namepet"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_marginHorizontal="50dp"
-         android:layout_marginTop="50dp"
-         android:background="@drawable/bg_login"
-         android:drawablePadding="10dp"
-         android:hint="ชื่อสัตว์เลี้ยง"
-         android:padding="10dp"
-         android:textColor="#FFFFFF"
-         android:textColorHint="@color/white"
-         android:textDirection="ltr"
-         android:textSize="18sp" />
-
-      <EditText
-            android:id="@+id/address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_login"
-            android:drawablePadding="10dp"
-            android:hint="ที่อยู่"
-            android:padding="10dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="@color/white"
-            android:textDirection="ltr"
-            android:textSize="18sp" />
-
         <EditText
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/bg_login"
             android:drawablePadding="10dp"
             android:hint="ชื่อเจ้าของสัตว์เลี้ยง"

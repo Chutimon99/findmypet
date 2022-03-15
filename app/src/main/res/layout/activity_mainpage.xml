@@ -28,12 +28,13 @@
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_marginHorizontal="100dp"
+            android:drawableLeft="@drawable/ic_baseline_pets_24"
+            android:drawablePadding="10dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/bg_login"
             android:backgroundTint="#4CCCC0"
             android:text="สัตว์เลี้ยงของฉัน"
             android:textColor="#FFFFFF"
-            android:textSize="20dp" />
+            android:textSize="18dp" />
 
         <Button
             android:id="@+id/findmypet"
@@ -42,11 +43,12 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="100dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/bg_login"
+            android:drawableLeft="@drawable/ic_baseline_location_on_24"
+            android:drawablePadding="10dp"
             android:backgroundTint="#4CCCC0"
             android:text="ตามหาสัตว์เลี้ยง"
             android:textColor="#FFFFFF"
-            android:textSize="20dp" />
+            android:textSize="18dp" />
 
         <Button
             android:id="@+id/qr"
@@ -54,12 +56,27 @@
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_marginHorizontal="100dp"
+            android:drawablePadding="10dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/bg_login"
+            android:drawableLeft="@drawable/ic_baseline_qr_code_scanner_24"
             android:backgroundTint="#4CCCC0"
             android:text="สแกนคิวอาร์โค้ด"
             android:textColor="#FFFFFF"
-            android:textSize="20dp" />
+            android:textSize="18dp" />
+
+        <Button
+            android:id="@+id/editprofile"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="100dp"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="15dp"
+            android:drawableLeft="@drawable/ic_baseline_mode_edit_24"
+            android:backgroundTint="#4CCCC0"
+            android:text="แก้ไขข้อมูลผู้ใช้"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp" />
 
 
 

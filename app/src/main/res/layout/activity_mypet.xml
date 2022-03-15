@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg3"
-    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".Mypet">
 
     <LinearLayout
@@ -16,73 +16,103 @@
 
         <ImageView
             android:id="@+id/UploadPet"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
             android:layout_width="250dp"
-            android:layout_height="250dp"/>
+            android:layout_height="250dp"
+            android:background="@drawable/iconpet"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp" />
 
-        <Button
-            android:id="@+id/BtnUpload"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/imageUpload"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="120dp"
-            android:background="@drawable/bg_login"
             android:hint="เพิ่มภาพสัตว์"
-            android:textColorHint="@color/white"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#4CCCC0"
-            android:textDirection="ltr"
-            android:textSize="18sp" />
+            android:layout_gravity="center_horizontal"
+            android:textColorHint="#696969"
+            android:textSize="18sp"/>
 
 
         <EditText
-            android:id="@+id/pet"
+            android:id="@+id/namepet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/bg_login"
+            android:background="#63CFFF"
             android:drawablePadding="20dp"
+            android:drawableLeft="@drawable/ic__6380692781536039568"
             android:hint="ชื่อสัตว์เลี้ยง"
-            android:padding="20dp"
+            android:padding="10dp"
             android:textColor="#FFFFFF"
             android:textColorHint="@color/white"
             android:textDirection="ltr"
             android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/type"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="176dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
+            android:padding="8dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/bg_login"
-            android:drawablePadding="20dp"
-            android:hint="ประเเภทของสัตว์"
-            android:padding="20dp"
+            android:background="#ffb923"
+            android:text="ประเภทของสัตว์เลี้ยง"
             android:textColor="#FFFFFF"
-            android:textColorHint="@color/white"
-            android:textDirection="ltr"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
 
+
+
+        <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp">
+            <RadioButton
+                android:id="@+id/cat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="แมว" />
+
+            <RadioButton
+                android:id="@+id/dog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="สุนัข" />
+        </RadioGroup>
 
         <EditText
             android:id="@+id/breed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/bg_login"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_baseline_question_mark_24"
+            android:background="#63CFFF"
             android:drawablePadding="20dp"
             android:hint="พันธุ์ของสัตว์"
-            android:padding="20dp"
+            android:padding="10dp"
             android:textColor="#FFFFFF"
             android:textColorHint="@color/white"
             android:textDirection="ltr"
             android:textSize="18sp" />
 
+        <Button
+            android:id="@+id/BtnUpload"
+            android:layout_width="100dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/bg_login"
+            android:backgroundTint="#4CCCC0"
+            android:hint="บันทึก"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="@color/white"
+            android:textDirection="ltr"
+            android:textSize="16sp" />
 
 
-</LinearLayout>
+
+
     </LinearLayout>
+</LinearLayout>

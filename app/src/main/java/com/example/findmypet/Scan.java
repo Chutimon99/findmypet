@@ -31,6 +31,7 @@ public class Scan extends AppCompatActivity {
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
         integrator.setPrompt("Scanning Code");
         integrator.initiateScan();
+        //setResult(Activity.RESULT_OK);
     }
 
     @Override

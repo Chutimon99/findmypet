@@ -24,7 +24,7 @@ import java.util.HashMap;
 
 public class Register extends AppCompatActivity{
 
-    private  EditText username,password,confirmpassword,namepet,address,name,number;
+    private  EditText username,password,confirmpassword,name,number;
     private  Button Bregister;
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://find-mypet-default-rtdb.firebaseio.com/");
@@ -37,8 +37,6 @@ public class Register extends AppCompatActivity{
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         confirmpassword = findViewById(R.id.confirmpassword);
-        namepet = findViewById(R.id.namepet);
-        address = findViewById(R.id.address);
         name = findViewById(R.id.name);
         number = findViewById(R.id.number);
         Bregister = findViewById(R.id.register);
@@ -50,13 +48,11 @@ public class Register extends AppCompatActivity{
                 String usertxt = username.getText().toString();
                 String passwordtxt = password.getText().toString();
                 String conpasswordtxt = confirmpassword.getText().toString();
-                String namepettxt = namepet.getText().toString();
                 String nametxt = name.getText().toString();
-                String addresstxt = address.getText().toString();
                 String numbertxt = number.getText().toString();
 
                 if(usertxt.isEmpty() || passwordtxt.isEmpty() || conpasswordtxt.isEmpty()
-                        || namepettxt.isEmpty() || nametxt.isEmpty() || addresstxt.isEmpty() || numbertxt.isEmpty()){
+                        ||  nametxt.isEmpty() || numbertxt.isEmpty()){
 
                    Toast.makeText(Register.this,"กรุงณาใส่ข้อมูลให้ครบทุกช่อง",Toast.LENGTH_SHORT).show();
                 }
@@ -76,9 +72,7 @@ public class Register extends AppCompatActivity{
                             else {
                                 databaseReference.child("Users").child(usertxt).child("username").setValue(usertxt);
                                 databaseReference.child("Users").child(usertxt).child("password").setValue(passwordtxt);
-                                databaseReference.child("Users").child(usertxt).child("namepet").setValue(namepettxt);
                                 databaseReference.child("Users").child(usertxt).child("name").setValue(nametxt);
-                                databaseReference.child("Users").child(usertxt).child("address").setValue(addresstxt);
                                 databaseReference.child("Users").child(usertxt).child("number").setValue(numbertxt);
 
                                 Toast.makeText(Register.this,"ลงทะเบียนผู้ใช้สำเร็จ",Toast.LENGTH_SHORT).show();
