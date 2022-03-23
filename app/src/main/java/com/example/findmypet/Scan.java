@@ -6,6 +6,7 @@ import  androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,8 @@ import com.google.zxing.integration.android.IntentResult;
 
 
 public class Scan extends AppCompatActivity {
+
+    private Uri uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,7 @@ public class Scan extends AppCompatActivity {
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
         integrator.setPrompt("Scanning Code");
         integrator.initiateScan();
-        //setResult(Activity.RESULT_OK);
+        setResult(Activity.RESULT_OK);
     }
 
     @Override
@@ -39,9 +42,15 @@ public class Scan extends AppCompatActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() != null) {
+
+
+                Uri uri = Uri.parse("https://find-mypet.web.app/information?data_id="+result.getContents());
+                        Intent intent  = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage(result.getContents());
-                builder.setTitle("Scanning Result");
+                builder.setTitle("Scanning Result"+result.getContents());
                 builder.setPositiveButton("Scan Again", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

@@ -74,7 +74,8 @@ public class Register extends AppCompatActivity{
                                 databaseReference.child("Users").child(usertxt).child("password").setValue(passwordtxt);
                                 databaseReference.child("Users").child(usertxt).child("name").setValue(nametxt);
                                 databaseReference.child("Users").child(usertxt).child("number").setValue(numbertxt);
-
+                                databaseReference.child("Users").child(usertxt).child("imageURL").setValue("");
+                                databaseReference.child("Users").child(usertxt).child("type").setValue("แมว");
                                 Toast.makeText(Register.this,"ลงทะเบียนผู้ใช้สำเร็จ",Toast.LENGTH_SHORT).show();
                                 finish();
 

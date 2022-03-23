@@ -18,7 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class EditProfile extends AppCompatActivity {
+public class  EditProfile extends AppCompatActivity {
 
     private EditText Editusername,Editpassword,Editconfirmpassword,Editname,Editnumber;
     private Button Btnsave;
