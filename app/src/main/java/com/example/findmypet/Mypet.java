@@ -25,6 +25,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -105,7 +106,9 @@ public class Mypet extends AppCompatActivity {
                     int id = getResources().getIdentifier("@drawable/iconpet", "drawable", getPackageName());
                     UploadPet.setImageResource(id);
                 }else {
-                    Picasso.get().load(imageURL).fit().centerCrop().into(UploadPet);
+                    //Picasso.get().load(imageURL).fit().centerCrop().into(UploadPet);
+                    //Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/find-mypet.appspot.com/o/uploadsUser%2Fp11.jpg?alt=media&token=3ba58e5e-34ab-4b49-b109-f535cd12032b").fit().centerCrop().into(UploadPet);
+                    Glide.with(getApplicationContext()).load("https://firebasestorage.googleapis.com/v0/b/find-mypet.appspot.com/o/uploadsUser%2Fp11.jpg?alt=media&token=3ba58e5e-34ab-4b49-b109-f535cd12032b").fitCenter().centerCrop().into(UploadPet);
                 }
             }
         }

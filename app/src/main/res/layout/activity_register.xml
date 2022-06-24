@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg2"
-    android:gravity="center"
+    android:background="#66CDAA"
     tools:context=".Register">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="vertical">
 
 
@@ -21,11 +21,11 @@
         android:layout_marginHorizontal="50dp"
         android:layout_marginTop="100dp"
         android:background="@drawable/bg_login"
+        android:backgroundTint="#FFF8DC"
         android:drawablePadding="10dp"
         android:hint="ชื่อผู้ใช้"
         android:padding="10dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white"
+        android:textColorHint="#CD5C5C"
         android:textDirection="ltr"
         android:textSize="18sp" />
 
@@ -36,11 +36,11 @@
         android:layout_marginHorizontal="50dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/bg_login"
+        android:backgroundTint="#FFF8DC"
         android:drawablePadding="10dp"
         android:hint="รหัสผ่าน"
         android:padding="10dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white"
+        android:textColorHint="#CD5C5C"
         android:textDirection="ltr"
         android:textSize="18sp" />
 
@@ -51,11 +51,11 @@
         android:layout_marginHorizontal="50dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/bg_login"
+        android:backgroundTint="#FFF8DC"
         android:drawablePadding="10dp"
         android:hint="ยืนยันรหัสผ่าน"
         android:padding="10dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white"
+        android:textColorHint="#CD5C5C"
         android:textDirection="ltr"
         android:textSize="18sp" />
 
@@ -66,11 +66,11 @@
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/bg_login"
+            android:backgroundTint="#FFF8DC"
             android:drawablePadding="10dp"
             android:hint="ชื่อเจ้าของสัตว์เลี้ยง"
             android:padding="10dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="@color/white"
+            android:textColorHint="#CD5C5C"
             android:textDirection="ltr"
             android:textSize="18sp" />
         <EditText
@@ -80,11 +80,11 @@
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_login"
+            android:backgroundTint="#FFF8DC"
             android:drawablePadding="10dp"
             android:hint="เบอร์ติดต่อ"
             android:padding="10dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="@color/white"
+            android:textColorHint="#CD5C5C"
             android:textDirection="ltr"
             android:textSize="18sp" />
 
@@ -95,7 +95,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:background="@drawable/bg_login"
-            android:backgroundTint="#4CCCC0"
+            android:backgroundTint="#CD5C5C"
             android:text="ลงทะเบียน"
             android:textColor="#FFFFFF"
             android:textSize="20dp" />

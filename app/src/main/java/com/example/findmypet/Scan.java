@@ -44,7 +44,7 @@ public class Scan extends AppCompatActivity {
             if (result.getContents() != null) {
 
 
-                Uri uri = Uri.parse("https://find-mypet.web.app/information?data_id="+result.getContents());
+                Uri uri = Uri.parse(result.getContents());
                         Intent intent  = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
 

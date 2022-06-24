@@ -3,17 +3,30 @@ package com.example.findmypet;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.IntentSender;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationRequest;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
+import android.widget.Toast;
 
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,6 +52,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private List<MypetModel> mypetModelList = new ArrayList<>() ;
     private String battery = "";
+    boolean isPersmissionGranter;
+    LocationRequest locationRequest;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +88,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 System.out.println("Failed to read value." + error.toException());
             }
         });
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -101,8 +118,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy เวลา:HH:mm");
                String Time = sdf. format(timeD);
 battery = maxbytimestamp.getBattery();
+               float cal = Float.parseFloat(battery);
+               cal = (cal*100)/5;   //เลข5เปลี่ยนตามจำนวนโวลถ่าน
+               battery = String.valueOf(Math.round(cal));
                 LatLng sydney = new LatLng(maxbytimestamp.getLatitude(), maxbytimestamp.getLongtitude());
-                mMap.addMarker(new MarkerOptions().position(sydney).title(Time ).snippet(" Bettery " + battery));
+                mMap.addMarker(new MarkerOptions().position(sydney).title(Time ).snippet(" Battery " + battery + "%"));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 18),1000,null);
             }
         //}
@@ -136,5 +156,8 @@ battery = maxbytimestamp.getBattery();
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.getUiSettings().setZoomControlsEnabled(true);
     }
+
+
+
 
 }
