@@ -50,7 +50,7 @@ import java.util.stream.Collectors;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private List<MypetModel> mypetModelList = new ArrayList<>() ;
+    private List<MypetModel> mypetModelList = new ArrayList<>();
     private String battery = "";
     boolean isPersmissionGranter;
     LocationRequest locationRequest;
@@ -74,9 +74,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
+
                 String value = dataSnapshot.getValue().toString();
-                System.out.println( "Value is: " + value);
-                collectMypetDataset((Map<String,Object>)dataSnapshot.getValue());
+                System.out.println("Value is: " + value);
+                collectMypetDataset((Map<String, Object>) dataSnapshot.getValue());
 
 //                String batterytxt = dataSnapshot.child("battery").getValue().toString();
 //                battery = batterytxt;
@@ -92,12 +93,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private void collectMypetDataset(Map<String,Object> users) {
+    private void collectMypetDataset(Map<String, Object> users) {
 
         ArrayList<Long> phoneNumbers = new ArrayList<>();
 
         //iterate through each user, ignoring their UID
-        for (Map.Entry<String, Object> entry : users.entrySet()){
+        for (Map.Entry<String, Object> entry : users.entrySet()) {
 
             //Get user map
             Map singleUser = (Map) entry.getValue();
@@ -105,26 +106,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //phoneNumbers.add((Long) singleUser.get("phone"));
 
             mypetModelList.add(new MypetModel(Double.parseDouble(singleUser.get("latitude").toString()),
-                    Double.parseDouble(singleUser.get("longtitude").toString()),(singleUser.get("timestamp").toString()),singleUser.get("battery").toString()));
+                    Double.parseDouble(singleUser.get("longtitude").toString()), (singleUser.get("timestamp").toString()), singleUser.get("battery").toString()));
 
         }
 
         //mypetModelList.((element)->{
         //for (int i = 0 ; i<mypetModelList.size(); i++){
-        MypetModel maxbytimestamp = mypetModelList.stream().max(Comparator.comparing(MypetModel::getTimestamp)).orElseThrow(NoSuchElementException::new);;
-           if (mMap != null ){
-               Long Timestamp = Long.parseLong(maxbytimestamp.getTimestamp());
-               Date timeD = new Date(Timestamp * 1000);
-               SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy เวลา:HH:mm");
-               String Time = sdf. format(timeD);
-battery = maxbytimestamp.getBattery();
-               float cal = Float.parseFloat(battery);
-               cal = (cal*100)/5;   //เลข5เปลี่ยนตามจำนวนโวลถ่าน
-               battery = String.valueOf(Math.round(cal));
-                LatLng sydney = new LatLng(maxbytimestamp.getLatitude(), maxbytimestamp.getLongtitude());
-                mMap.addMarker(new MarkerOptions().position(sydney).title(Time ).snippet(" Battery " + battery + "%"));
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 18),1000,null);
-            }
+        MypetModel maxbytimestamp = mypetModelList.stream().max(Comparator.comparing(MypetModel::getTimestamp)).orElseThrow(NoSuchElementException::new);
+        ;
+        if (mMap != null) {
+            Long Timestamp = Long.parseLong(maxbytimestamp.getTimestamp());
+            Date timeD = new Date(Timestamp * 1000);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy เวลา:HH:mm");
+            String Time = sdf.format(timeD);
+//battery = maxbytimestamp.getBattery();
+//               float cal = Float.parseFloat(battery);
+//               cal = (cal*100)/5;   //เลข5เปลี่ยนตามจำนวนโวลถ่าน
+//               battery = String.valueOf(Math.round(cal));
+            battery = String.valueOf(Math.round((Float.parseFloat(maxbytimestamp.getBattery()) * 100) / 5));
+            LatLng sydney = new LatLng(maxbytimestamp.getLatitude(), maxbytimestamp.getLongtitude());
+            mMap.addMarker(new MarkerOptions().position(sydney).title(Time).snippet(" Battery " + battery + "%"));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 18), 1000, null);
+        }
         //}
 
         //});
@@ -137,6 +140,7 @@ battery = maxbytimestamp.getBattery();
 
         System.out.println(phoneNumbers.toString());
     }
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -156,8 +160,6 @@ battery = maxbytimestamp.getBattery();
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.getUiSettings().setZoomControlsEnabled(true);
     }
-
-
 
 
 }

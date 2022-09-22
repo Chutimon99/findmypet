@@ -91,11 +91,11 @@ public class Mypet extends AppCompatActivity {
                 breed.setText(breedtxt);
 
                 int typepet = 0;
-                if (type.equals("สุนัข")){
+                if (type != null && type.equals("สุนัข")){
                     typepet = 1;
                     dog.setChecked(true);
                 }else {
-                    if (type.equals("แมว")){
+                    if (type != null && type.equals("แมว")){
                         typepet = 0;
                         cat.setChecked(true);
                     } 

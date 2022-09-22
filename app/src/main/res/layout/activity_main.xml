@@ -36,6 +36,7 @@
             android:hint="ชื่อผู้ใช้"
             android:padding="20dp"
             android:textColorHint="#CD5C5C"
+            android:textColor="#CD5C5C"
             android:textDirection="ltr"
             android:textSize="18sp" />
 
@@ -52,6 +53,7 @@
             android:drawablePadding="10dp"
             android:hint="รหัสผ่าน"
             android:inputType="textPassword"
+            android:textColor="#CD5C5C"
             android:padding="20dp"
             android:textColorHint="#CD5C5C"
             android:textDirection="ltr"

@@ -51,9 +51,9 @@ public class  EditProfile extends AppCompatActivity {
                 String inputEditname = Editname.getText().toString();
                 String inputEditnumber = Editnumber.getText().toString();
 
+
                 myRefUser.child(userid).child("name").setValue(inputEditname);
                 myRefUser.child(userid).child("number").setValue(inputEditnumber);
-
 
                     if (inputEditpassword.equals(inputEditconpassword)){
                         myRefUser.child(userid).child("password").setValue(inputEditpassword);
@@ -68,6 +68,12 @@ public class  EditProfile extends AppCompatActivity {
         myRefUser.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String password = snapshot.child(userid).child("password").getValue(String.class);
+                String  name = snapshot.child(userid).child("name").getValue(String.class);
+                String number = snapshot.child(userid).child("number").getValue(String.class);
+                Editpassword.setText(password);
+                Editname.setText(name);
+                Editnumber.setText(number);
             }
 
             @Override

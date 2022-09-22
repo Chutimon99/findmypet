@@ -78,6 +78,19 @@
             android:textColor="#FFFFFF"
             android:textSize="18dp" />
 
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="50dp"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#FFF8DC"
+            android:text="ออกจากระบบ"
+            android:textColor="#CD5C5C"
+            android:textSize="16dp" />
+
 
 
 

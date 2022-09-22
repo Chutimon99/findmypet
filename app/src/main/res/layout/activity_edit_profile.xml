@@ -26,6 +26,8 @@
             android:hint="รหัสผ่าน"
             android:padding="10dp"
             android:textColorHint="#CD5C5C"
+            android:inputType="textPassword"
+            android:textColor="#CD5C5C"
             android:textDirection="ltr"
             android:textSize="18sp" />
 
@@ -41,6 +43,8 @@
             android:hint="ยืนยันรหัสผ่าน"
             android:padding="10dp"
             android:textColorHint="#CD5C5C"
+            android:inputType="textPassword"
+            android:textColor="#CD5C5C"
             android:textDirection="ltr"
             android:textSize="18sp" />
 
@@ -56,6 +60,7 @@
             android:hint="ชื่อเจ้าของสัตว์เลี้ยง"
             android:padding="10dp"
             android:textColorHint="#CD5C5C"
+            android:textColor="#CD5C5C"
             android:textDirection="ltr"
             android:textSize="18sp" />
 
@@ -71,6 +76,7 @@
             android:hint="เบอร์ติดต่อ"
             android:padding="10dp"
             android:textColorHint="#CD5C5C"
+            android:textColor="#CD5C5C"
             android:textDirection="ltr"
             android:textSize="18sp" />
 
